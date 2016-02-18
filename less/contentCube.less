@@ -1,0 +1,53 @@
+﻿#cubeInner {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    -moz-transition-duration: 400ms;
+    -o-transition-duration: 400ms;
+    -webkit-transition-duration: 400ms;
+    transition-duration: 400ms;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    //For debugging
+    //-moz-transform: rotateY(45deg) rotateX(-45deg);
+    //-ms-transform: rotateY(45deg) rotateX(-45deg);
+    //-o-transform: rotateY(45deg) rotateX(-45deg);
+    //-webkit-transform: rotateY(45deg) rotateX(-45deg);
+    //transform: rotateY(45deg) rotateX(-45deg);
+
+
+    > div {
+        position: absolute;
+        -moz-transform: translateX(0) rotateY(180deg);
+        -ms-transform: translateX(0) rotateY(180deg);
+        -o-transform: translateX(0) rotateY(180deg);
+        -webkit-transform: translateX(0) rotateY(180deg);
+        transform: translateX(0) rotateY(180deg);
+        -moz-perspective: 1000px;
+        -ms-perspective: 1000px;
+        -webkit-perspective: 1000px;
+        perspective: 1000px;
+        -moz-perspective-origin: 0 0;
+        -ms-perspective-origin: 0 0;
+        -webkit-perspective-origin: 0 0;
+        perspective-origin: 0 0;
+        opacity: 0;
+        width: 100%;
+        padding: 5px 30px;
+
+
+
+        &.current, &.before, &.after {
+            opacity: 1;
+        }
+
+        &.current {
+        }
+
+        &.before {
+        }
+
+        &.after {
+        }
+    }
+}

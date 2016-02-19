@@ -1,0 +1,42 @@
+﻿body .rootContain {
+  display: block;
+  width: 50%;
+}
+body .rootContain .content > * {
+  display: block;
+  height: 300px;
+}
+body .rootContain .content > *:nth-child(1) {
+  background-color: red;
+}
+body .rootContain .content > *:nth-child(2) {
+  background-color: yellow;
+}
+body .rootContain .content > *:nth-child(3) {
+  background-color: magenta;
+}
+body .rootContain .content > *:nth-child(4) {
+  background-color: turquoise;
+}
+body .rootContain .content > *:nth-child(5) {
+  background-color: limegreen;
+}
+body .rootContain .content > *:nth-child(6) {
+  background-color: darkgoldenrod;
+}
+body .rootContain .content > * .inner {
+  padding: 5px 30px;
+  background-color: white;
+  margin: 5px 30px;
+}
+body .controlRoot {
+  margin-bottom: 20px;
+}
+body .controlRoot .activate {
+  margin-top: 20px;
+  cursor: pointer;
+}
+body .controlRoot .controls {
+  display: none;
+  margin-top: 20px;
+}

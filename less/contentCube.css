@@ -1,4 +1,4 @@
-﻿#cubeInner {
+﻿.contentCube {
   position: relative;
   margin: 0 auto;
   width: 100%;
@@ -9,7 +9,7 @@
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
-#cubeInner > div {
+.contentCube > * {
   position: absolute;
   -moz-transform: translateX(0) rotateY(180deg);
   -ms-transform: translateX(0) rotateY(180deg);
@@ -26,10 +26,11 @@
   perspective-origin: 0 0;
   opacity: 0;
   width: 100%;
-  padding: 5px 30px;
+  padding: 0 !important;
+  margin: 0 !important;
 }
-#cubeInner > div.current,
-#cubeInner > div.before,
-#cubeInner > div.after {
+.contentCube > *.current,
+.contentCube > *.before,
+.contentCube > *.after {
   opacity: 1;
 }

@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Content Cube System Example</title>
+    <link href="less/contentCube.min.css" rel="stylesheet" />
+    <link href="example/styles.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="controlRoot">
+        <h1>
+            3D Content Cube Content Slider
+        </h1>
+        <button class="activate">
+            Activate
+        </button>
+        <div class="controls">
+            <select>
+                <option value="0">
+                    slide 1
+                </option>
+                <option value="1">
+                    slide 2
+                </option>
+                <option value="2">
+                    slide 3
+                </option>
+                <option value="3">
+                    slide 4
+                </option>
+                <option value="4">
+                    slide 5
+                </option>
+                <option value="5">
+                    slide 6
+                </option>
+            </select>
+            <p>
+                The rotation is controlled via the "cubeSystem.rotate()" function. <br />
+                <br />
+                This function takes an interger value that matches the index of the target slide. <br />
+                Slide 1 having an index of 0.
+            </p>
+
+        </div>
+    </div>
+    <div class="rootContain">
+
+        <div class="content">
+            <div class="exampleFaces">
+                <div class="inner">
+                    <h2>
+                        Slide 1
+                    </h2>
+                    <p>
+                        Initialise the plugin on the root element, in this case, each box face is held inside a div with the class "content". <br />
+                        The speed control is pending.<br />
+                        <br />
+                        $(".content").contentCube({<br />
+                        "speed": 10 <br />   
+                        });
+                    </p>
+                    <p>
+                        An inner element is used to give padding or positioning as the cube strips the 'face' elements of padding and margin.
+
+                        The height of each face is determained by the tallest of the elements. 
+                    </p>
+                </div>
+            </div>
+            <div class="exampleFaces">
+                <div class="inner">
+                    <h2>
+                        Slide 2
+                    </h2>
+                    <p>
+                        Forms and jQuery validation will still function as usual
+                    </p>
+                    <form>
+                        <input type="email" value="" placeholder="Email" />
+                        <input type="submit" value="Submit"  />
+                    </form>
+                </div>
+
+            </div>
+            <div class="exampleFaces">
+                <div class="inner">
+                    <h2>
+                        Slide 3
+                    </h2>
+                    <p>
+                        As will all Click events, no need for delegation
+                    </p>
+                    <button class="clickevent">
+                        Click event test
+                    </button>
+                </div>
+
+            </div>
+            <div class="exampleFaces">
+                <div class="inner">
+                    <h2>
+                        Slide 4
+                    </h2>
+                    <p>
+                        Images still retain their properties and additionally a gallery module such as Owl-Carousel will still function.
+                    </p>
+                    <img src="http://placehold.it/350x150">
+                </div>
+
+            </div>
+            <div class="exampleFaces">
+                <div class="inner">
+                    <h2>
+                        Slide 5
+                    </h2>
+                </div>
+
+            </div>
+            <div class="exampleFaces">
+                <div class="inner">
+                    <h2>
+                        Slide 6
+                    </h2>
+                </div>
+
+            </div>
+        </div>
+    </div>
+   
+  
+    <script src="jQuery-1.12.0/jquery-1.12.0.min.js"></script>
+    <script src="js/contentCube.js"></script>
+    <script src="example/scripts.js"></script>
+    <script>
+        app.fn.init();
+    </script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 ﻿jQuery.fn.extend({
     contentCube: function (options) {
+        $(this).addClass("contentCube");
         cubeSystem.init($(this), options);
     }
 });
@@ -13,7 +14,8 @@ cubeSystem = {
         height: 0,
         width: 0,
         total: 0,
-        minHeight: 0
+        minHeight: 0,
+        maxIndex: 0
     },
     init: function (element, options) {
         var elementIndex = element.find("> div").length;
@@ -39,16 +41,16 @@ cubeSystem = {
         var element = cubeSystem.elements[0].element;
 
         var blockwidth = element.width();
-        var blockheight = element.find("> div").height();
+        var blockheight = element.find("> *").height();
 
-        cubeSystem.states.total = element.find("> div").length;
+        cubeSystem.states.total = element.find("> *").length;
         cubeSystem.states.zDistance = blockwidth / 2;
         cubeSystem.states.height = blockheight / 2;
         cubeSystem.states.width = blockwidth / 2;
-
+        cubeSystem.states.maxIndex = (element.find("> *").length - 1);
         //This is for initializing the first 2 
         var index = 0;
-        element.find("> div").each(function () {
+        element.find("> *").each(function () {
             if (index == 0) {
                 $(this).addClass("current");
             } else if (index == 1) {
@@ -73,7 +75,7 @@ cubeSystem = {
         var rotate = 0;
 
         //Here we iterate over all the faces of the cube to overlay them in a cube like slider
-        element.find("> div").each(function () {
+        element.find("> *").each(function () {
             if (front) {
                 cubeSystem.writeTransforms($(this), zDistance, 0, rotate);
                 rotate += 90;
@@ -103,48 +105,59 @@ cubeSystem = {
         var element = cubeSystem.elements[0].element;
 
         var max = 0;
-        element.find("> div").each(function () {
+        element.find("> *").each(function () {
             if ($(this).height() > max) {
                 max = $(this).height();
             }
         })
-        element.find("> div").css("min-height", max);
+        element.find("> *").css("min-height", max);
         element.css("min-height", max + 10);
         cubeSystem.states.minHeight = max;
     },
     rotate: function (requestIndex) {
+        if (requestIndex < 0) {
+            console.log(requestIndex + "Rotate input not a positive number");
+            return false;
+        }
         var element = cubeSystem.elements[0].element;
-
+        var lastIndex = cubeSystem.states.maxIndex;
         var currentIndex = cubeSystem.states.index;
         var currentRotate = cubeSystem.states.rotateCurrent;
         if (requestIndex > currentIndex) {
             //This runs the rotation in steps and swaps the classes so the right faces get opacity 1
-            for (var i = currentIndex; i < requestIndex; i++) {
-                element.find("> div.before").removeClass("before");
+            if (requestIndex <= lastIndex) {
+                for (var i = currentIndex; i < requestIndex; i++) {
 
-                element.find("> div.current").addClass("before").removeClass("current");
+                    element.find("> .before").removeClass("before");
 
-                element.find("> div.after").addClass("current").removeClass("after");
+                    element.find("> .current").addClass("before").removeClass("current");
 
-                element.find("> div.current").next().addClass("after");
-                currentRotate -= 90;
-                this.rotateCube(currentRotate);
-                cubeSystem.states.rotateCurrent = currentRotate;
-                cubeSystem.states.index = element.find("> div.current").data("box-index");
+                    element.find("> .after").addClass("current").removeClass("after");
+
+                    element.find("> .current").next().addClass("after");
+                    currentRotate -= 90;
+                    this.rotateCube(currentRotate);
+                    cubeSystem.states.rotateCurrent = currentRotate;
+                    cubeSystem.states.index = element.find("> div.current").data("box-index");
+
+
+                }
+            } else {
+                console.log("Requested index invalid: Slide does not exist");
             }
         } else if (requestIndex < currentIndex) {
             for (var i = currentIndex; i > requestIndex; i--) {
-                element.find("> div.after").removeClass("after");
+                element.find("> .after").removeClass("after");
 
-                element.find("> div.current").addClass("after").removeClass("current");
+                element.find("> .current").addClass("after").removeClass("current");
 
-                element.find("> div.before").addClass("current").removeClass("before").prev().addClass("before");
+                element.find("> .before").addClass("current").removeClass("before").prev().addClass("before");
 
-                states.cube.index = element.find("> div.current").data("box-index");
+                cubeSystem.states.index = element.find("> .current").data("box-index");
                 currentRotate += 90;
                 this.rotateCube(currentRotate);
                 cubeSystem.states.rotateCurrent = currentRotate;
-                cubeSystem.states.index = element.find("> div.current").data("box-index");
+                cubeSystem.states.index = element.find("> .current").data("box-index");
             }
         }
     },
